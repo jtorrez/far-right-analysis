@@ -37,3 +37,6 @@ class Vectorizer(object):
 
     def fit_transform(self, X):
         return self.vectorizer.fit_transform(X)
+
+    def transform(self, X):
+        return self.vectorizer.transform(x)
