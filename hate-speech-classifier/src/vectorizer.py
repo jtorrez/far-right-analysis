@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
+import string
 
 class PorterTokenizer(object):
     """Custom PorterTokenizer for TfidfVectorizer"""
@@ -9,7 +10,8 @@ class PorterTokenizer(object):
         self.stemmer = PorterStemmer()
 
     def __call__(self, doc):
-        return [self.stemmer.stem(t) for t in word_tokenize(doc)]
+        translate_table = dict((ord(char), None) for char in string.punctuation)
+        return [self.stemmer.stem(t) for t in word_tokenize(doc.translate(translate_table))]
 
 class Vectorizer(object):
     """Vecotizer wrapper for sklearn TfidfVectorizer.
