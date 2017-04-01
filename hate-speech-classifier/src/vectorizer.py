@@ -22,11 +22,13 @@ class Vectorizer(object):
                  tokenizer=None,
                  encoding='utf-8',
                  stop_words='english',
+                 min_df=1,
                  ngram_range=None):
         self.tokenizers = {'porter': PorterTokenizer()}
         self.vectorizer = TfidfVectorizer(tokenizer=self.tokenizers[tokenizer],
                                           encoding=encoding,
                                           stop_words=stop_words,
+                                          min_df=min_df,
                                           ngram_range=ngram_range)
 
     def fit(self, X):
